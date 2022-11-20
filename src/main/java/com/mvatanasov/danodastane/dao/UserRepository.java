@@ -22,24 +22,24 @@ public class UserRepository  {
         if(user.getRole()==null){
             entityManager.createNativeQuery(
                     "INSERT INTO Users(Username, Password, FirstName, LastName, RoleID)" +
-                            " VALUES (?,?,?,?,?)"
+                            " VALUES (?,cast(? as varbinary(max)),?,?,?)"
             )
                     .setParameter(1,user.getUsername())
                     .setParameter(2,user.getPassword())
                     .setParameter(3,user.getFirstName())
                     .setParameter(4,user.getLastName())
-                    .setParameter(5,4);
+                    .setParameter(5,1).executeUpdate();
             System.out.println(user.getUsername());
         }else{
             entityManager.createNativeQuery(
                             "INSERT INTO Users(Username, Password, FirstName, LastName, RoleID)" +
-                                    " VALUES (?,?,?,?,?)"
+                                    " VALUES (?,cast(? as varbinary(max)),?,?,?)"
                     )
                     .setParameter(1,user.getUsername())
                     .setParameter(2,user.getPassword())
                     .setParameter(3,user.getFirstName())
                     .setParameter(4,user.getLastName())
-                    .setParameter(5,user.getRole().getId());
+                    .setParameter(5,user.getRole().getId()).executeUpdate();
             System.out.println(user.getFirstName());
         }
     }

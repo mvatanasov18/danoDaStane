@@ -231,37 +231,27 @@ ALTER DATABASE [VacationManager] SET  READ_WRITE
 GO
 
 
-
-
-USE VacationManager;
+SET ANSI_NULLS ON
 GO
-
-
-CREATE TRIGGER [dbo].[HashPassword]
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		e az be koi da e
+-- Create date: em dnes mai
+-- Description:	hash pass
+-- =============================================
+CREATE OR ALTER TRIGGER HashPassword
 ON [dbo].[Users]
-AFTER INSERT
-NOT FOR REPLICATION
-AS BEGIN
-
-DECLARE @Username varchar(255);
-DECLARE @Password nvarchar(255)
-DECLARE @FirstName nvarchar(255)
-DECLARE @LastName nvarchar(255)
-DECLARE @RoleId int
-
-SELECT 
- @Username=Username,
- @Password=[Password],
- @FirstName=FirstName,
- @LastName=LastName,
- @RoleId=RoleID
-FROM inserted;
-
-
+INSTEAD OF INSERT
+AS
+BEGIN
+SET NOCOUNT ON;
 INSERT INTO Users(Username,[Password],FirstName,LastName,RoleID)
-VALUES(@Username,CONVERT(varbinary(max),EncryptByPassPhrase('iskam_6_za_bazata_moje_i_za_springa',@Password)   ,2),@FirstName,@LastName,@RoleId);
+SELECT
+    i.Username,
+    CONVERT(varbinary(max),EncryptByPassPhrase('iskam_6_za_bazata_moje_i_za_springa',i.[Password]),2) ,
+    i.FirstName,
+    i.LastName,
+    i.RoleID
+FROM inserted AS i
 END
-GO
-
-ALTER TABLE [dbo].[Users] ENABLE TRIGGER [HashPassword]
-GO
