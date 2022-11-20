@@ -1,10 +1,9 @@
 package com.mvatanasov.danodastane.controller;
 
+import com.mvatanasov.danodastane.model.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class UserController {
 
-    @RequestMapping(value = {"/","/home","/index","/welcome"})
-    public String displayIndex(){
+    @GetMapping(value = {"/","/home","/index","/welcome"})
+    public String displayIndex(Model model){
+        model.addAttribute("user", new User());
         return "index";
 
     }
 
-    @RequestMapping(value="/postLogin", method = RequestMethod.POST)
-    public String getLogin(HttpServletRequest request){
-        return "Username Password: ";
+    @PostMapping(value="/postLogin")
+    public String getLogin(@ModelAttribute User user,Model model){
+        model.addAttribute("user",user);
+        return "login";
     }
 }
