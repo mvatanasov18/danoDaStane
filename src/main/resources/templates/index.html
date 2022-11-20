@@ -1,21 +1,28 @@
 <!doctype html>
-<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
     <!--Style CSS-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script th:src="@{/js/nav.js}"></script>
     <title>Vacation Manager</title>
 </head>
@@ -32,7 +39,7 @@
     <h1 class="display-4 d-flex justify-content-center welcome">to</h1>
     <h1 class="display-3 d-flex justify-content-center welcome">Vacation Manager</h1>
     <div class="d-grid gap-2 col-1 mx-auto py-3">
-        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#login">
+        <button class="btn btn-primary " data-bs-target="#login" data-bs-toggle="modal" type="button">
             login
         </button>
     </div>
@@ -42,62 +49,89 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="loginLabel" class="modal fade" id="login" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content divModal" >
+        <div class="modal-content divModal">
             <div class="headerModal">
-                <form action="#" th:action="@{/postLogin}" th:object="${user}" method="post" id="loginForm">
-            <div class="modal-header" >
-                <h1 class="modal-title fs-5" id="loginLabel">Login</h1>
+                <!--  LOGIN FORM  -->
+                <form action="#" id="loginForm" method="post" th:action="@{/postLogin}" th:object="${user}">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="loginLabel">Login</h1>
 
-                <kbd class="esc" data-bs-dismiss="modal">esc</kbd>
+                        <kbd class="esc" data-bs-dismiss="modal">esc</kbd>
 
-            </div>
-            <div class="modal-body">
+                    </div>
+                    <div class="modal-body">
 
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input aria-describedby="basic-addon1" aria-label="Username" class="form-control"
+                                   placeholder="Username"
+                                   th:field="*{username}" type="text">
+                        </div>
+                        <div class="input-group mb-2">
 
+                            <span class="input-group-text"> &#128274;</span>
+                            <input autocomplete="password" class="form-control" placeholder="Password"
+                                   th:field="*{password}"
+                                   type="password">
+                        </div>
 
-                <div class="input-group mb-2">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                    <input th:field="*{username}" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                </div>
-                <div class="input-group mb-2">
-
-                    <span class="input-group-text" > &#128274;</span>
-                    <input autocomplete="password" th:field="*{password}" type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                </div>
-
-
-
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="submit" >Login</button>
-            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-bs-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-primary" id="submit" type="submit">Login</button>
+                    </div>
                 </form>
+
+                <!--  LOGIN FORM  -->
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="register" tabindex="-1" aria-labelledby="registerLabel" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="registerLabel" class="modal fade" id="register" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content divModal" >
+        <div class="modal-content divModal">
             <div class="headerModal">
-                <div class="modal-header" >
-                    <h1 class="modal-title fs-5" id="registerLabel">Register</h1>
+                <div class="modal-header">
+                    <!--  REGISTER FORM  -->
+                    <form action="#" id="registerForm" method="post" th:action="@{/postRegister}" th:object="${user}">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="registerLabel">Login</h1>
 
-                    <kbd class="esc" data-bs-dismiss="modal">esc</kbd>
+                            <kbd class="esc" data-bs-dismiss="modal">esc</kbd>
 
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Register</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">@</span>
+                                <input aria-describedby="basic-addon1" aria-label="Username" class="form-control"
+                                       placeholder="Username"
+                                       th:field="*{username}" type="text">
+                            </div>
+                            <div class="input-group mb-2">
+
+                                <span class="input-group-text"> &#128274;</span>
+                                <input autocomplete="password" class="form-control" placeholder="Password"
+                                       th:field="*{password}" type="password">
+                            </div>
+                            <div class="row g-2">
+                                <span class="col-auto">
+                                <input  th:field="*{firstName}" type="text" class="form-control daMuMaikata" placeholder="First Name" aria-label="FirstName">
+                                </span>
+                                <span class="col-auto">
+                                <input  th:field="*{lastName}" type="text" class="form-control daMuMaikata" placeholder="Last Name" aria-label="LastName">
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" data-bs-dismiss="modal" type="button">Close</button>
+                            <button class="btn btn-primary" type="submit">Register</button>
+                        </div>
+                    </form>
+                    <!--  REGISTER FORM  -->
                 </div>
             </div>
         </div>
