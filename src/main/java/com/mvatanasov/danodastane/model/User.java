@@ -1,9 +1,14 @@
 package com.mvatanasov.danodastane.model;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
-
+@NamedNativeQuery(name = "insertUser",
+        query = "INSERT INTO " +
+                "Users(Username, Password, FirstName, LastName, CompanyName,RoleId)" +
+                " VALUES (?,?,?,?,?,?)")
 @Entity
 public class User {
     @Id
@@ -19,14 +24,19 @@ private String password;
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName, String companyName, Role role) {
+    public User(Integer id,String username, String password, String firstName, String lastName, String companyName, Role role) {
+        this.id=id;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+
         this.companyName = companyName;
         this.role = role;
     }
+
+
+
 
     @Override
     public String toString() {

@@ -37,7 +37,7 @@
     </div>
 
 </div>
-<!-- Button trigger modal -->
+
 
 
 <!-- Modal -->
@@ -46,7 +46,7 @@
         <div class="modal-content divModal">
             <div class="headerModal">
                 <!--  LOGIN FORM  -->
-                <form action="#" id="loginForm" method="post" th:action="@{/postLogin}" th:object="${user}">
+                <form id="loginForm" method="post" th:action="@{/login}" th:object="${user}">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="loginLabel">Login</h1>
 
@@ -55,18 +55,18 @@
                     </div>
                     <div class="modal-body">
 
-                        <div class="input-group mb-2">
+                        <div class="input-group mb-2 ">
                             <span class="input-group-text" id="basic-addon1">@</span>
                             <input aria-describedby="basic-addon1"  class="form-control"
                                    placeholder="Username"
-                                   th:field="*{username}" type="text">
+                                   th:field="*{username}" type="text" required>
                         </div>
-                        <div class="input-group mb-2">
+                        <div class="input-group mb-2 ">
 
                             <span class="input-group-text"> &#128274;</span>
                             <input autocomplete="password" class="form-control" placeholder="Password"
                                    th:field="*{password}"
-                                   type="password">
+                                   type="password" required>
                         </div>
 
                     </div>
@@ -90,33 +90,45 @@
                     <!--  REGISTER FORM  -->
                     <form action="#" id="registerForm" method="post" th:action="@{/postRegister}" th:object="${user}">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="registerLabel">Login</h1>
+                            <h1 class="modal-title fs-5" id="registerLabel">Register</h1>
 
                             <kbd class="esc" data-bs-dismiss="modal">esc</kbd>
 
                         </div>
                         <div class="modal-body">
-                            <div class="input-group mb-2">
+                            <div class="input-group mb-2 ">
                                 <span class="input-group-text">@</span>
                                 <input aria-describedby="basic-addon1"  class="form-control"
                                        placeholder="Username"
-                                       th:field="*{username}" type="text">
+                                       th:field="*{username}" type="text" required>
+
                             </div>
-                            <div class="input-group mb-2">
+                            <div class="input-group mb-2 ">
 
                                 <span class="input-group-text"> &#128274;</span>
                                 <input autocomplete="password" class="form-control" placeholder="Password"
-                                       th:field="*{password}" type="password">
+                                       th:field="*{password}" type="password" required>
+
                             </div>
-                            <div class="row g-2">
+                            <div class="input-group mb-2 ">
+
+                                <span class="input-group-text"> &#128188;</span>
+                                <input  class="form-control" placeholder="Company Name"
+                                        th:field="*{companyName}" type="text" required>
+
+                            </div>
+                            <div class=" row g-2 ">
                                 <span class="col-auto">
-                                <input  th:field="*{firstName}" type="text" class="form-control daMuMaikata" placeholder="First Name" aria-label="FirstName">
+                                <input  th:field="*{firstName}" type="text" class="form-control daMuMaikata" placeholder="First Name" aria-label="FirstName" required>
+
                                 </span>
-                                <span class="col-auto">
-                                <input  th:field="*{lastName}" type="text" class="form-control daMuMaikata" placeholder="Last Name" aria-label="LastName">
+
+                                <span class="col-auto ">
+                                <input  th:field="*{lastName}" type="text" class="form-control daMuMaikata" placeholder="Last Name" aria-label="LastName" required>
 
                                 </span>
                             </div>
+
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-danger" data-bs-dismiss="modal" type="button">Close</button>
